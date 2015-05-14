@@ -1,0 +1,16 @@
+{
+    "contents" : "exportPattern(\"^[[:alpha:]]+\")\nimport(plyr)\nimport(ggplot2)\nimport(magicaxis)\nimport(manipulate)\nimport(dplyr)",
+    "created" : 1431551988366.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1554416938",
+    "id" : "7B09E4E4",
+    "lastKnownWriteTime" : 1431552322,
+    "path" : "~/Dropbox/CavSpec/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_namespace"
+}

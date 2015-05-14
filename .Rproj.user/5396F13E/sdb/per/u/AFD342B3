@@ -1,0 +1,17 @@
+{
+    "contents" : "spectrum <- function(date, sample, R.method = 'HeCO2', R = 0.9999), ...) {",
+    "created" : 1425313375688.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2749582816",
+    "id" : "AFD342B3",
+    "lastKnownWriteTime" : 1411089408,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

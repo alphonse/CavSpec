@@ -1,0 +1,16 @@
+{
+    "contents" : "# CO2 <- read.table(\"~/Dropbox/CavSpec/2014-10-04/reflect/CO2.txt\", quote=\"\\\"\", skip = 2048)\n# CO2 <- data.frame(CO2$V3, CO2$V6)\n# write.csv(CO2, file = 'CO2.txt', row.names = F)\n# \n# N2 <- read.table(\"~/Dropbox/CavSpec/2014-10-04/reflect/N2.txt\", quote=\"\\\"\", skip = 1024)\n# N2 <- data.frame(N2$V3, N2$V6)\n# write.csv(N2, file = 'N2.txt', row.names = F)\n\nrefData <- batchImport('./2014-10-04/reflect/', nrow = 1044, head = T)\nrefData <- setRange(refData)\nlambda  <- refData$lambda[which(refData$Gas == 'CO2')]\n\nrefLit <- reflit(lambda)\nR <- reflectSpec(refData, refLit, \"N2CO2\")\n\nintPlot(refData)\nrefPlot(R)\n",
+    "created" : 1425313286581.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3062689473",
+    "id" : "6A2A37EE",
+    "lastKnownWriteTime" : 1427254246,
+    "path" : "C:/Users/al/Dropbox/bbces_master_example.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

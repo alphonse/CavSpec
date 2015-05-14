@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: CavSpec\nType: Package\nTitle: Tools for Cavity Enhanced Spectroscopy\nVersion: 0.1\nDate: 2013-11-18\nAuthor: Al Fischer\nDepends: ggplot2, plyr, gridExtra, manipulate, magicaxis, dplyr\nMaintainer: Al Fischer <al@uga.edu>\nDescription: A set of functions designed for processing data from cavity enhanced spectroscopy (BBCES, PSCRDS, and CRDS).\nLicense: GPL-3",
+    "created" : 1431552282552.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3175973421",
+    "id" : "A0BDDFB9",
+    "lastKnownWriteTime" : 1431552325,
+    "path" : "~/Dropbox/CavSpec/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

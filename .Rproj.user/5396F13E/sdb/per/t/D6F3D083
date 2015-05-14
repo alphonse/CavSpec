@@ -1,0 +1,16 @@
+{
+    "contents" : "spectrum <- function(date, sample, R.method = 'HeCO2', R = 0.9999, OS = 'win', xlimits = list(UV = c(min = 360, max = 390), b = c(min = 420, max = 455), g = c(min = 515, max = 565), r = c(min = 660, max = 725)), ...) {\n\n# load required pacakges -----\n  require(ggplot2)\n  require(plyr)\n  require(dplyr)\n  \n# Calculate reflectivity -----\n    if (R.method == 'manual') {\n      R <- R\n    }\n    \n    else {\n      # calculate R\n      R <- reflectCurve(date = date, OS = OS, R.method = R.method, ...)\n      R <- R$R\n    }\n      \n# set working directory according to OS -----\n    if (OS == 'osx') {\n      setwd(paste('//Volumes/CHEM/Groups/Smith_G/Cavity Ringdown Spectroscopy/BB-CEAS/LEDs/Combined/All/', date, sep = ''))  \n    }\n    \n    else if (OS == 'win') {\n      setwd(paste('S:/Groups/Smith_G/Cavity Ringdown Spectroscopy/BB-CEAS/LEDs/Combined/All/', \n                  date, sep = ''))\n    }\n    \n    else {\n      return(\"OS Unrecognized.  Supported are Mac OSX and Windows\")\n    }\n  \n    \n# read sample files, place in data frame with sample names, and label columns -----\n    sample.path <- paste(getwd(), '/', sample, '/', sep = '')\n    \n    names   <- list.files(path = sample.path, pattern = '*.txt')\n    samples <- lapply(paste(sample.path, names, sep = ''), FUN = read.table, sep = '\\t', nrow = 1043, skip = 17) %.%\n      setNames(as.character(strsplit(names, split = '.txt'))) %.%\n      ldply() %.%\n      setNames(c('Gas', 'lambda', 'I'))\n               \n# remove non enhanced light by setting values to 'NA' -----\n    samples$I[which(samples$lambda < xlimits$UV[['min']] | (samples$lambda > xlimits$UV[['max']] & samples$lambda < xlimits$b[['min']]) | \n                         (samples$lambda > xlimits$b[['max']] & samples$lambda < xlimits$g[['min']]) | \n                         (samples$lambda > xlimits$g[['max']] & samples$lambda < xlimits$r[['min']]) | \n                         samples$lambda > xlimits$r[['max']])] <- NA\n    \n# extract wavelength values for final output -----\n    lambda <- samples$lambda[which(samples$Gas == 'I0')]\n\n# get background literature spectrum -----\n    N2.lit <- splinefun(lit.spectrum('N2', version = 'Sneep'))\n    N2.lit <- N2.lit(lambda) * 2.69e19  #  Loschmidt's No.\n    \n# get background literature spectrum -----\n    I  <- filter(samples, Gas == 'I')$I\n    I0 <- filter(samples, Gas == 'I0')$I\n    alpha <- extinction(I, I0, R = R, method = 'CEAS', Rl = 1.25, d = 53.3, bg.ext = N2.lit)  ##### NOTE: Air should be used instead of N2\n  \nreturn(data.frame(lambda, alpha))\n  \n}",
+    "created" : 1425313226241.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "185266727",
+    "id" : "D6F3D083",
+    "lastKnownWriteTime" : 1411089408,
+    "path" : "S:/Groups/Smith_G/Cavity Ringdown Spectroscopy/BB-CEAS/R/spectrum.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
